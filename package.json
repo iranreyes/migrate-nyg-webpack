@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "node-sass-chokidar": "0.0.3",
     "normalize.css": "^7.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
@@ -15,12 +14,13 @@
       "npm run build-css && node-sass-chokidar --include-path ./src/style --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
+    "release": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.1",
-    "stats.js": "^0.17.0"
+    "stats.js": "^0.17.0",
+    "node-sass-chokidar": "0.0.3"
   }
 }
