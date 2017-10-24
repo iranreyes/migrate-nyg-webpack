@@ -1,0 +1,5 @@
+@import 'vars.scss';
+
+@mixin font-oculus-regular() {
+  font-family: OculusSans-Regular, #{$generic-fonts};
+}

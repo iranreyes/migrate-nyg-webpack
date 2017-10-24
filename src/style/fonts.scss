@@ -1,0 +1,16 @@
+// Fonts
+//
+// Location of all the font-families and clases to use them
+
+@import 'vars.scss';
+
+$base-path: '../raw-assets/fonts/';
+
+@font-face {
+  font-family: OculusSans-Regular;
+  font-style: normal;
+  font-weight: normal;
+  src: url('#{$base-path}oculus-sans/woff2/OculusSans-Rg.woff2') format('woff2'),
+    url('#{$base-path}oculus-sans/woff/OculusSans-Rg.woff') format('woff'),
+    url('#{$base-path}oculus-sans/ttf/OculusSans-Rg.ttf') format('truetype');
+}
