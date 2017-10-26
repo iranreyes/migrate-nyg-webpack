@@ -18,7 +18,8 @@
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src/style --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src/style --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "watch-css":
+      "npm run build-css && node-sass-chokidar --include-path ./src/style --include-path ./node_modules src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "release": "npm run build-css && react-scripts build",
@@ -26,8 +27,8 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.1.1",
-    "stats.js": "^0.17.0",
-    "node-sass-chokidar": "0.0.3"
+    "stats.js": "^0.17.0"
   }
 }
