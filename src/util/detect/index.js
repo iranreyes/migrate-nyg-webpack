@@ -1,4 +1,3 @@
-'use strict';
 var MobileDetect = require('mobile-detect');
 var ua = navigator.userAgent;
 var md = new MobileDetect(ua);
@@ -17,7 +16,7 @@ var checkDevice = function() {
 };
 
 var checkVendor = function() {
-  return (navigator.vendor) ? navigator.vendor.toLowerCase() : '';
+  return navigator.vendor ? navigator.vendor.toLowerCase() : '';
 };
 
 var checkBrowser = function() {
@@ -32,7 +31,10 @@ var checkBrowser = function() {
     browser = 'edge';
   } else if (uaLower.indexOf('firefox') >= 0) {
     browser = 'firefox';
-  } else if ((uaLower.indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0) || (env.indexOf('dev') >= 0 && uaLower.indexOf('iphone') >= 0 && uaLower.indexOf('chrome') < 0)) {
+  } else if (
+    (uaLower.indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0) ||
+    (env.indexOf('dev') >= 0 && uaLower.indexOf('iphone') >= 0 && uaLower.indexOf('chrome') < 0)
+  ) {
     browser = 'safari';
   } else if (uaLower.indexOf('opr') >= 0) {
     browser = 'opera';
@@ -59,9 +61,20 @@ var checkManufacturer = function() {
 };
 
 var getClasses = function() {
-  var classes = [checkDevice(), 'x' + checkDevicePixelRatio(), checkBrowser(), 'v' + utilBrowser.checkVersion(), (utilOS.os()).replace(/\s/g, '_').toLocaleLowerCase()];
+  var classes = [
+    checkDevice(),
+    'x' + checkDevicePixelRatio(),
+    checkBrowser(),
+    'v' + utilBrowser.checkVersion(),
+    utilOS
+      .os()
+      .replace(/\s/g, '_')
+      .toLocaleLowerCase()
+  ];
   if (md.mobile()) classes.push(checkManufacturer());
-  return classes.filter(function(cur) { return !!cur; });
+  return classes.filter(function(cur) {
+    return !!cur;
+  });
 };
 
 module.exports = {
@@ -82,12 +95,12 @@ module.exports = {
   isPhone: !!md.phone(),
   isTablet: !!md.tablet(),
   isDesktop: !(md.phone() || md.tablet()),
-  isChrome: (checkBrowser().indexOf('chrome') >= 0 && checkVendor().indexOf('google') >= 0),
-  isIE: ((ua.toLowerCase().indexOf('msie') >= 0) || (ua.toLowerCase().indexOf('trident/') >= 0)),
-  isEdge: (ua.toLowerCase().indexOf('edge') >= 0),
-  isFirefox: (checkBrowser().indexOf('firefox') >= 0),
-  isSafari: (checkBrowser().indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0),
-  isOpera: (checkBrowser().indexOf('opera') >= 0),
+  isChrome: checkBrowser().indexOf('chrome') >= 0 && checkVendor().indexOf('google') >= 0,
+  isIE: ua.toLowerCase().indexOf('msie') >= 0 || ua.toLowerCase().indexOf('trident/') >= 0,
+  isEdge: ua.toLowerCase().indexOf('edge') >= 0,
+  isFirefox: checkBrowser().indexOf('firefox') >= 0,
+  isSafari: checkBrowser().indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0,
+  isOpera: checkBrowser().indexOf('opera') >= 0,
   md: md,
   get orientation() {
     if (window.screen) {
