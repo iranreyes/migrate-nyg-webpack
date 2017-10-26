@@ -10,11 +10,9 @@ class Landing extends React.Component {
   }
 
   componentWillEnter(done) {
-    console.log('enter');
     done();
   }
   componentWillLeave(done) {
-    console.log('leave');
     done();
   }
 
