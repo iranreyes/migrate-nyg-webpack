@@ -1,21 +1,44 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import TransitionRoute from '../../util/transitionRoute';
+import Landing from '../Landing/Landing';
+import About from '../About/About';
 
-class App extends Component {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="header">
-          <img src={logo} className="logo" alt="logo" />
-          <h1 className="title">Welcome to React</h1>
-        </header>
-        <p className="intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <Route
+          render={({ location }) => [
+            <header key="header">
+              <Link to="/">Landing</Link>
+              <Link to="/about-us">About</Link>
+            </header>,
+            <TransitionRoute exact path="/" component={Landing} key="landing" />,
+            <TransitionRoute exact path="/about-us" component={About} key="about" />
+          ]}
+        />
+      </Router>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    app: state.app
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+App.defaultProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
