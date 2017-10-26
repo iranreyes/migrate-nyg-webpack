@@ -1,20 +1,44 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import TransitionRoute from '../../util/transitionRoute';
 import Landing from '../Landing/Landing';
 import About from '../About/About';
 
-const App = () => (
-  <div>
-    <header>
-      <Link to="/">Landing</Link>
-      <Link to="/about-us">About</Link>
-    </header>
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    <main>
-      <Route exact path="/" component={Landing} />
-      <Route exact path="/about-us" component={About} />
-    </main>
-  </div>
-);
+  render() {
+    return (
+      <Router>
+        <Route
+          render={({ location }) => [
+            <header key="header">
+              <Link to="/">Landing</Link>
+              <Link to="/about-us">About</Link>
+            </header>,
+            <TransitionRoute exact path="/" component={Landing} key="landing" />,
+            <TransitionRoute exact path="/about-us" component={About} key="about" />
+          ]}
+        />
+      </Router>
+    );
+  }
+}
 
-export default App;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    app: state.app
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+App.defaultProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
