@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import TransitionRoute from '../../util/transitionRoute';
 import Landing from '../Landing/Landing';
 import About from '../About/About';
+import RotateScreen from '../../components/Rotate/Rotate';
+import TransitionRoute from '../../util/transitionRoute';
+import detect from '../../util/detect';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +23,8 @@ class App extends React.Component {
               <Link to="/about-us">About</Link>
             </header>,
             <TransitionRoute exact path="/" component={Landing} key="landing" />,
-            <TransitionRoute exact path="/about-us" component={About} key="about" />
+            <TransitionRoute exact path="/about-us" component={About} key="about" />,
+            detect.isPhone && <RotateScreen key="rotate" />
           ]}
         />
       </Router>
