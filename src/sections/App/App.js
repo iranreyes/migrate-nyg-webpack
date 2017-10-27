@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Landing from '../Landing/Landing';
-import About from '../About/About';
+
 import RotateScreen from '../../components/Rotate/Rotate';
 import TransitionRoute from '../../util/transitionRoute';
 import detect from '../../util/detect';
+import { AsyncLanding, AsyncAbout } from '../../util/asyncSectionHandler';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,13 +25,13 @@ class App extends React.Component {
             <TransitionRoute
               exact
               path="/"
-              component={Landing}
+              component={AsyncLanding}
               key="landing"
             />,
             <TransitionRoute
               exact
               path="/about-us"
-              component={About}
+              component={AsyncAbout}
               key="about"
             />,
             detect.isPhone && <RotateScreen key="rotate" />

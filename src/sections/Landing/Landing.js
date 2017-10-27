@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import logo from './logo.svg';
 import './Landing.css';
 
+import { AsyncAbout } from '../../util/asyncSectionHandler';
+
 class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    AsyncAbout.preload();
   }
 
   componentWillEnter(done) {
