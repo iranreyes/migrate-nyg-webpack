@@ -1,11 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Landing from '../Landing/Landing';
-import About from '../About/About';
+import loadable from 'react-loadable';
+
 import RotateScreen from '../../components/Rotate/Rotate';
+import LoadingComponent from '../../components/LoadingPage/LoadingPage';
 import TransitionRoute from '../../util/transitionRoute';
 import detect from '../../util/detect';
+
+// Asynchronous sections
+const AsyncLanding = loadable({
+  loader: () => import('../Landing/Landing'),
+  loading: LoadingComponent
+});
+
+const AsyncAbout = loadable({
+  loader: () => import('../About/About'),
+  loading: LoadingComponent
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -25,13 +37,13 @@ class App extends React.Component {
             <TransitionRoute
               exact
               path="/"
-              component={Landing}
+              component={AsyncLanding}
               key="landing"
             />,
             <TransitionRoute
               exact
               path="/about-us"
-              component={About}
+              component={AsyncAbout}
               key="about"
             />,
             detect.isPhone && <RotateScreen key="rotate" />
