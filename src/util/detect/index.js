@@ -33,12 +33,17 @@ var checkBrowser = function() {
     browser = 'firefox';
   } else if (
     (uaLower.indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0) ||
-    (env.indexOf('dev') >= 0 && uaLower.indexOf('iphone') >= 0 && uaLower.indexOf('chrome') < 0)
+    (env.indexOf('dev') >= 0 &&
+      uaLower.indexOf('iphone') >= 0 &&
+      uaLower.indexOf('chrome') < 0)
   ) {
     browser = 'safari';
   } else if (uaLower.indexOf('opr') >= 0) {
     browser = 'opera';
-  } else if (uaLower.indexOf('chrome') >= 0 && checkVendor().indexOf('google') >= 0) {
+  } else if (
+    uaLower.indexOf('chrome') >= 0 &&
+    checkVendor().indexOf('google') >= 0
+  ) {
     browser = 'chrome';
   }
   return browser;
@@ -46,7 +51,12 @@ var checkBrowser = function() {
 
 var checkDevicePixelRatio = function() {
   var pxlRatio = window.devicePixelRatio;
-  if (utilOS.os() === 'iOS' && window.innerWidth >= 375 && window.devicePixelRatio < 3) pxlRatio = 3;
+  if (
+    utilOS.os() === 'iOS' &&
+    window.innerWidth >= 375 &&
+    window.devicePixelRatio < 3
+  )
+    pxlRatio = 3;
   return pxlRatio;
 };
 
@@ -95,22 +105,37 @@ module.exports = {
   isPhone: !!md.phone(),
   isTablet: !!md.tablet(),
   isDesktop: !(md.phone() || md.tablet()),
-  isChrome: checkBrowser().indexOf('chrome') >= 0 && checkVendor().indexOf('google') >= 0,
-  isIE: ua.toLowerCase().indexOf('msie') >= 0 || ua.toLowerCase().indexOf('trident/') >= 0,
+  isChrome:
+    checkBrowser().indexOf('chrome') >= 0 &&
+    checkVendor().indexOf('google') >= 0,
+  isIE:
+    ua.toLowerCase().indexOf('msie') >= 0 ||
+    ua.toLowerCase().indexOf('trident/') >= 0,
   isEdge: ua.toLowerCase().indexOf('edge') >= 0,
   isFirefox: checkBrowser().indexOf('firefox') >= 0,
-  isSafari: checkBrowser().indexOf('safari') >= 0 && checkVendor().indexOf('apple') >= 0,
+  isSafari:
+    checkBrowser().indexOf('safari') >= 0 &&
+    checkVendor().indexOf('apple') >= 0,
   isOpera: checkBrowser().indexOf('opera') >= 0,
   md: md,
   get orientation() {
     if (window.screen) {
-      var orientation = window.screen.orientation || window.screen.mozOrientation || window.screen.msOrientation;
+      var orientation =
+        window.screen.orientation ||
+        window.screen.mozOrientation ||
+        window.screen.msOrientation;
       if (orientation && orientation.type) {
         return orientation.type.split('-', 1)[0];
       }
     }
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    var w = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    var h = Math.max(
+      document.documentElement.clientHeight,
+      window.innerHeight || 0
+    );
     var aspectRatio = w / h;
     if (aspectRatio < 1) {
       return 'portrait';

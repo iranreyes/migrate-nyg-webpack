@@ -22,8 +22,18 @@ class App extends React.Component {
               <Link to="/">Landing</Link>
               <Link to="/about-us">About</Link>
             </header>,
-            <TransitionRoute exact path="/" component={Landing} key="landing" />,
-            <TransitionRoute exact path="/about-us" component={About} key="about" />,
+            <TransitionRoute
+              exact
+              path="/"
+              component={Landing}
+              key="landing"
+            />,
+            <TransitionRoute
+              exact
+              path="/about-us"
+              component={About}
+              key="about"
+            />,
             detect.isPhone && <RotateScreen key="rotate" />
           ]}
         />

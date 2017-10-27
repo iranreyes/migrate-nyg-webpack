@@ -109,7 +109,9 @@ module.exports.checkMac = function() {
 module.exports.checkVersion = function() {
   // http://stackoverflow.com/questions/5916900/detect-version-of-browser
   var tem;
-  var M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+  var M =
+    ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) ||
+    [];
   if (/trident/i.test(M[1])) {
     tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
     return tem[1] || '';

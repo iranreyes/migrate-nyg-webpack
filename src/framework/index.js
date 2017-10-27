@@ -9,7 +9,10 @@ import App from '../sections/App/App';
 
 export default function() {
   const target = document.getElementById('root');
-  document.body.className = [...document.body.className.split(' '), ...detect.classes].join(' ');
+  document.body.className = [
+    ...document.body.className.split(' '),
+    ...detect.classes
+  ].join(' ');
 
   render(
     <Provider store={store}>

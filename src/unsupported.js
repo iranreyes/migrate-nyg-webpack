@@ -11,7 +11,12 @@ if (osVersion === 'Unknown') osVersion = Number.MAX_SAFE_INTEGER || 9999;
 if (browser.checkBot()) {
   supported = true;
 } else if (os === 'android' || os === 'ios') {
-  if (os === 'ios' && (browser.checkSafari() || browser.checkFacebook()) && osVersion >= matrix.ios) supported = true;
+  if (
+    os === 'ios' &&
+    (browser.checkSafari() || browser.checkFacebook()) &&
+    osVersion >= matrix.ios
+  )
+    supported = true;
   if (
     os === 'android' &&
     (browser.checkChrome() || browser.checkFacebook()) &&
