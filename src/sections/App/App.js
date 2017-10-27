@@ -1,23 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import loadable from 'react-loadable';
 
 import RotateScreen from '../../components/Rotate/Rotate';
-import LoadingComponent from '../../components/LoadingPage/LoadingPage';
 import TransitionRoute from '../../util/transitionRoute';
 import detect from '../../util/detect';
-
-// Asynchronous sections
-const AsyncLanding = loadable({
-  loader: () => import('../Landing/Landing'),
-  loading: LoadingComponent
-});
-
-const AsyncAbout = loadable({
-  loader: () => import('../About/About'),
-  loading: LoadingComponent
-});
+import { AsyncLanding, AsyncAbout } from '../../util/asyncSectionHandler';
 
 class App extends React.Component {
   constructor(props) {
