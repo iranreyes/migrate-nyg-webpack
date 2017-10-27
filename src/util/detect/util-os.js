@@ -24,7 +24,10 @@ var userAgentOS = [
   { s: 'UNIX', r: /UNIX/ },
   { s: 'BeOS', r: /BeOS/ },
   { s: 'OS/2', r: /OS\/2/ },
-  { s: 'Search Bot', r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/ }
+  {
+    s: 'Search Bot',
+    r: /(nuhk|Googlebot|Yammybot|Openbot|Slurp|MSNBot|Ask Jeeves\/Teoma|ia_archiver)/
+  }
 ];
 
 var ua = navigator.userAgent;

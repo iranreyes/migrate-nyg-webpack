@@ -13,7 +13,10 @@ export default class RotateScreen extends PureComponent {
 
   componentDidMount() {
     if (detect.isAndroid) {
-      window.addEventListener('orientationchange', this.handleOrientationChange);
+      window.addEventListener(
+        'orientationchange',
+        this.handleOrientationChange
+      );
     } else {
       window.addEventListener('resize', this.handleOrientationChange);
     }
@@ -21,7 +24,10 @@ export default class RotateScreen extends PureComponent {
 
   componentWillUnmount() {
     if (detect.isAndroid) {
-      window.removeEventListener('orientationchange', this.handleOrientationChange);
+      window.removeEventListener(
+        'orientationchange',
+        this.handleOrientationChange
+      );
     } else {
       window.removeEventListener('resize', this.handleOrientationChange);
     }
@@ -35,7 +41,9 @@ export default class RotateScreen extends PureComponent {
 
   render() {
     const isPortrait = this.state.orientation === 'portrait';
-    const visible = (this.props.portrait && !isPortrait) || (!this.props.portrait && isPortrait);
+    const visible =
+      (this.props.portrait && !isPortrait) ||
+      (!this.props.portrait && isPortrait);
     const style = {
       visibility: visible ? 'visible' : 'hidden'
     };

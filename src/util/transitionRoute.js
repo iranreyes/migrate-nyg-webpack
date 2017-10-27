@@ -43,7 +43,9 @@ class TransitionRoute extends Route {
       ref: ref => {
         this.childRef = ref;
       },
-      ...('keyOn' in this.props ? { key: this.props.keyOn({ match, location, route }) } : {})
+      ...('keyOn' in this.props
+        ? { key: this.props.keyOn({ match, location, route }) }
+        : {})
     };
 
     return component
